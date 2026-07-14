@@ -1,8 +1,14 @@
 package com.hospital_vm_vl.hospital_vm.Examenes.controller;
 
-
 import com.hospital_vm_vl.hospital_vm.Examenes.model.Examenes;
 import com.hospital_vm_vl.hospital_vm.Examenes.service.ExamenesService;
+import com.hospital_vm_vl.hospital_vm.cita.model.Cita;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +18,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/Examenes")
+@Tag(name = "Examenes", description = "Operaciones realcionadas con los Examenes")
 public class ExamenesController {
 
     @Autowired
     private ExamenesService examenesService;
 
     @GetMapping
+    @Operation(summary = "Obtener Examenes", description = "obtiene una lista de los Examenes")
     public ResponseEntity<List<Examenes>> listar() {
         List<Examenes> examenes = examenesService.findAll();
         if (examenes.isEmpty()) {
@@ -27,6 +35,7 @@ public class ExamenesController {
     }
 
     @PostMapping
+    @Operation(summary = "insertar Examenes", description = "inserta una lista de los Examenes")
     public ResponseEntity<Examenes> guardar(@RequestBody Examenes examenes) {
         try {
             Examenes nuevoPaciente = examenesService.save(examenes);
@@ -37,6 +46,7 @@ public class ExamenesController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Obtener Examenes por id", description = "obtiene una lista de los Examenes")
     public ResponseEntity<Examenes> buscar(@PathVariable Long id) {
         try {
             Examenes paciente = examenesService.findById(id);
@@ -47,6 +57,13 @@ public class ExamenesController {
     }
 
     @PutMapping("/{id}")
+    @Operation (summary = "actualizar Examenes", description = "actualiza una lista de los Examenes")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Examen actualizado con exitosamente",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Cita.class))),
+            @ApiResponse(responseCode = "404", description = "Examen no encontrad")
+    })
     public ResponseEntity<Examenes> actualizar(@PathVariable Long id, @RequestBody Examenes examenes) {
         try {
             Examenes pacExistente = examenesService.findById(id);
@@ -63,6 +80,11 @@ public class ExamenesController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar Examenes", description = "Elimina un Examen de la lista")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Examen eliminado exitosamente"),
+            @ApiResponse(responseCode = "404", description = "Examen no encontrada")
+    })
     public ResponseEntity<?> eliminar(@PathVariable Long id) {
         try {
             examenesService.delete(id);

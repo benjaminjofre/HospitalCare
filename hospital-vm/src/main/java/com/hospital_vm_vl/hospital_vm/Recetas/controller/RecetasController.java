@@ -3,7 +3,6 @@ package com.hospital_vm_vl.hospital_vm.Recetas.controller;
 
 import com.hospital_vm_vl.hospital_vm.Recetas.model.Recetas;
 import com.hospital_vm_vl.hospital_vm.Recetas.service.RecetasService;
-import com.hospital_vm_vl.hospital_vm.cita.model.Cita;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -62,7 +61,7 @@ public class RecetasController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Receta actualizado exitosamente",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Cita.class))),
+                            schema = @Schema(implementation = Recetas.class))),
             @ApiResponse(responseCode = "404", description = "Receta no encontrado")
     })
     public ResponseEntity<Recetas> actualizar(@PathVariable Long id, @RequestBody Recetas recetas) {

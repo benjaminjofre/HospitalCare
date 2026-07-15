@@ -2,7 +2,6 @@ package com.hospital_vm_vl.hospital_vm.Examenes.controller;
 
 import com.hospital_vm_vl.hospital_vm.Examenes.model.Examenes;
 import com.hospital_vm_vl.hospital_vm.Examenes.service.ExamenesService;
-import com.hospital_vm_vl.hospital_vm.cita.model.Cita;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -61,7 +60,7 @@ public class ExamenesController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Examen actualizado con exitosamente",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Cita.class))),
+                            schema = @Schema(implementation = Examenes.class))),
             @ApiResponse(responseCode = "404", description = "Examen no encontrad")
     })
     public ResponseEntity<Examenes> actualizar(@PathVariable Long id, @RequestBody Examenes examenes) {

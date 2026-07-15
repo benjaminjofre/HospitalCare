@@ -3,7 +3,6 @@ package com.hospital_vm_vl.hospital_vm.Hospitalizacion.controller;
 
 import com.hospital_vm_vl.hospital_vm.Hospitalizacion.model.Hospitalizacion;
 import com.hospital_vm_vl.hospital_vm.Hospitalizacion.service.HospitalizacionService;
-import com.hospital_vm_vl.hospital_vm.cita.model.Cita;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -62,7 +61,7 @@ public class HospitalizacionController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Hospitalizacion actualizada exitosamente",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Cita.class))),
+                            schema = @Schema(implementation = Hospitalizacion.class))),
             @ApiResponse(responseCode = "404", description = "Hospitalizacion no encontrad")
     })
     public ResponseEntity<Hospitalizacion> actualizar(@PathVariable Long id, @RequestBody Hospitalizacion hospitalizacion) {

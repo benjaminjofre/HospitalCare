@@ -2,7 +2,6 @@ package com.hospital_vm_vl.hospital_vm.Especialidades.controller;
 
 import com.hospital_vm_vl.hospital_vm.Especialidades.model.Especialidades;
 import com.hospital_vm_vl.hospital_vm.Especialidades.service.EspecialidadesService;
-import com.hospital_vm_vl.hospital_vm.cita.model.Cita;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -61,7 +60,7 @@ public class EspecialidadesController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Especialidad actualizada con exitosamente",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Cita.class))),
+                            schema = @Schema(implementation = Especialidades.class))),
             @ApiResponse(responseCode = "404", description = "Especialidad no encontrada")
     })
     public ResponseEntity<Especialidades> actualizar(@PathVariable Long id, @RequestBody Especialidades especialidades) {

@@ -1,9 +1,7 @@
 package com.hospital_vm_vl.hospital_vm.Medicos.controller;
 
 import com.hospital_vm_vl.hospital_vm.Medicos.model.Medicos;
-import com.hospital_vm_vl.hospital_vm.Medicos.repository.MedicosRepository;
 import com.hospital_vm_vl.hospital_vm.Medicos.service.MedicosService;
-import com.hospital_vm_vl.hospital_vm.cita.model.Cita;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -64,7 +62,7 @@ public class MedicosController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Medicos actualizado exitosamente",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Cita.class))),
+                            schema = @Schema(implementation = Medicos.class))),
             @ApiResponse(responseCode = "404", description = "Medico no encontrado")
     })
     public ResponseEntity<Medicos> actualizar(@PathVariable Long id, @RequestBody Medicos medicos) {

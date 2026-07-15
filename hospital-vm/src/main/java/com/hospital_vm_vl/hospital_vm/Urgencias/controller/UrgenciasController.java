@@ -2,7 +2,6 @@ package com.hospital_vm_vl.hospital_vm.Urgencias.controller;
 
 import com.hospital_vm_vl.hospital_vm.Urgencias.model.Urgencias;
 import com.hospital_vm_vl.hospital_vm.Urgencias.service.UrgenciasService;
-import com.hospital_vm_vl.hospital_vm.cita.model.Cita;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -62,7 +61,7 @@ public class UrgenciasController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Urgencia actualizado exitosamente",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Cita.class))),
+                            schema = @Schema(implementation = Urgencias.class))),
             @ApiResponse(responseCode = "404", description = "Urgencia no encontrado")
     })
     public ResponseEntity<Urgencias> actualizar(@PathVariable Long id, @RequestBody Urgencias urgencias) {
